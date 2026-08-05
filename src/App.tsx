@@ -187,6 +187,8 @@ interface PlayerBarProps {
   onToggleMute: () => void
   onCycleRepeat: () => void
   onToggleShuffle: () => void
+  lyricsOpen: boolean
+  onToggleLyrics: () => void
   onOpenLyrics: () => void
 }
 
@@ -207,6 +209,8 @@ function PlayerBar({
   onToggleMute,
   onCycleRepeat,
   onToggleShuffle,
+  lyricsOpen,
+  onToggleLyrics,
   onOpenLyrics,
 }: PlayerBarProps) {
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0
@@ -226,6 +230,15 @@ function PlayerBar({
 
       <div className="player-center">
         <div className="player-controls">
+          <button
+            className={`mobile-lyrics-button ${lyricsOpen ? 'is-active' : ''}`}
+            onClick={onToggleLyrics}
+            aria-label={lyricsOpen ? '关闭歌词' : '查看歌词'}
+            aria-pressed={lyricsOpen}
+            type="button"
+          >
+            词
+          </button>
           <button className={`control-button auxiliary ${shuffle ? 'is-active' : ''}`} onClick={onToggleShuffle} aria-label="随机播放" aria-pressed={shuffle} type="button">
             <Shuffle size={17} />
           </button>
@@ -601,6 +614,8 @@ function App() {
         onToggleMute={toggleMute}
         onCycleRepeat={cycleRepeat}
         onToggleShuffle={() => setShuffle((value) => !value)}
+        lyricsOpen={lyricsOpen}
+        onToggleLyrics={() => setLyricsOpen((value) => !value)}
         onOpenLyrics={() => setLyricsOpen(true)}
       />
 

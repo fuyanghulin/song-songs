@@ -676,7 +676,7 @@ input:focus-visible {
   color: #a6a7ac;
   font-size: 14px;
   line-height: 1.7;
-  text-align: left;
+  text-align: center;
   cursor: pointer;
   transition: color 220ms ease, transform 220ms ease, font-size 220ms ease;
 }
@@ -689,7 +689,6 @@ input:focus-visible {
   color: var(--text);
   font-size: 18px;
   font-weight: 700;
-  transform: translateX(5px);
 }
 
 .lyrics-state {
@@ -711,8 +710,9 @@ input:focus-visible {
 }
 
 .lyrics-missing {
-  justify-items: start;
+  justify-items: center;
   color: var(--text-tertiary);
+  text-align: center;
 }
 
 .lyrics-missing svg {
@@ -835,6 +835,10 @@ input:focus-visible {
 .player-controls {
   justify-content: center;
   gap: 10px;
+}
+
+.mobile-lyrics-button {
+  display: none;
 }
 
 .control-button,
@@ -1221,26 +1225,43 @@ input:focus-visible {
     display: none;
   }
 
+  .mobile-lyrics-button {
+    width: 44px;
+    height: 44px;
+    display: inline-grid;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid #dedee1;
+    border-radius: 50%;
+    background: white;
+    color: var(--app-red);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .mobile-lyrics-button:hover {
+    background: var(--app-red-soft);
+  }
+
+  .mobile-lyrics-button.is-active {
+    border-color: var(--app-red);
+    background: var(--app-red);
+    color: white;
+  }
+
   .progress-row {
     grid-column: 1 / -1;
     grid-row: 2;
   }
 
   .player-volume {
-    position: absolute;
-    right: 12px;
-    top: -50px;
+    display: none;
   }
 
   .player-volume .icon-button:not(.lyrics-trigger),
   .volume-range {
     display: none;
-  }
-
-  .lyrics-trigger {
-    background: white;
-    color: var(--text);
-    box-shadow: 0 7px 22px rgba(27, 28, 32, 0.14);
   }
 
   .toast {
