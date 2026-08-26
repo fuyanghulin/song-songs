@@ -36,6 +36,8 @@ const assetUrl = (directory: 'songs' | 'lyrics', fileName: string, extension: 'm
 
 const normalizeSearch = (value: string) => value.toLocaleLowerCase().replace(/\s+/g, '')
 
+const defaultDocumentTitle = '留声 · 许嵩音乐集'
+
 interface SidebarProps {
   selectedGroupId: string
   onSelectGroup: (group: CatalogGroup) => void
@@ -81,7 +83,7 @@ function Sidebar({ selectedGroupId, onSelectGroup, open, onClose }: SidebarProps
         <div className="brand-lockup">
           <span className="brand-mark" aria-hidden="true">半</span>
           <span>
-            <strong>半句留声</strong>
+            <strong>留声</strong>
             <small>VAE SONGBOOK</small>
           </span>
           <button className="icon-button sidebar-close" onClick={onClose} aria-label="关闭分类菜单" type="button">
@@ -327,6 +329,14 @@ function App() {
     () => findActiveLyric(lyrics, currentTime),
     [lyrics, currentTime],
   )
+
+  useEffect(() => {
+    document.title = `留声-${currentTrack.displayTitle}`
+
+    return () => {
+      document.title = defaultDocumentTitle
+    }
+  }, [currentTrack.displayTitle])
 
   useEffect(() => {
     const audio = audioRef.current
