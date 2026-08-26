@@ -14,6 +14,14 @@ npm run dev
 - `songs/歌曲名.mp3`
 - `lyrics/歌曲名.lrc`
 
+安装 FFmpeg（需能直接运行 `ffprobe`）后，若 MP3 来自网易云且保留了原始 `163 key` 标签，可按歌曲 ID 自动补齐同步歌词：
+
+```bash
+npm run lyrics:sync
+```
+
+该命令默认保留已有歌词；需要重新获取时使用 `npm run lyrics:sync -- --force`。
+
 ## GitHub Pages
 
 运行以下命令会构建 `dist/`，并把静态网站发布到仓库的 `gh-pages` 分支：
